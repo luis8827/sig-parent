@@ -25,7 +25,7 @@ public class HolaServlet extends HttpServlet {
 	 */
 	public HolaServlet() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
