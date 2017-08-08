@@ -1,4 +1,4 @@
-package ld.ejb;
+package sig.rest;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
 
+import sig.rest.controller.InstanciasController;
 import sig.rest.controller.ProcesosController;
 import sig.rest.controller.TareasController;
 import sig.rest.controller.UsuariosController;
@@ -23,6 +24,7 @@ public class MyRestApplication extends	Application{
 		classes.add(ProcesosController.class);
 		classes.add(TareasController.class);
 		classes.add(UsuariosController.class);
+		classes.add(InstanciasController.class);
 		
 		return classes;
 	}

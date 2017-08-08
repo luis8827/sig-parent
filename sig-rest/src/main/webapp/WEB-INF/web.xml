@@ -4,14 +4,5 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>HolaServlet</display-name>
-    <servlet-name>HolaServlet</servlet-name>
-    <servlet-class>org.sig.servlet.HolaServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HolaServlet</servlet-name>
-    <url-pattern>/HolaServlet</url-pattern>
-  </servlet-mapping>
+  
 </web-app>
