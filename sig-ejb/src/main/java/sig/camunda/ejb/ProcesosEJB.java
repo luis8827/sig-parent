@@ -27,4 +27,11 @@ public class ProcesosEJB implements ProcesosInterface {
 		return proceso;
 	}
 
+	@Override
+	public Map<String, Object> iniciarProcesos(String NombreProceso, Map<String, Object> variables) {
+		CamundaEngine camunda = new CamundaEngine();
+		Map<String, Object> proceso = new HashMap<String, Object>();
+		proceso.put("idProceso", camunda.processCreate(NombreProceso, "", "", "",variables));
+		return proceso;
+	}
 }
