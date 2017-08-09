@@ -20,6 +20,7 @@ import sig.camunda.ejb.InstanciasInterface;;
 @Stateless
 @LocalBean
 @Path("/instancias")
+@Produces("application/json")
 public class InstanciasController {
 	@EJB
 	private InstanciasInterface objInstancia;
@@ -29,7 +30,6 @@ public class InstanciasController {
 
 	@GET
 	@Path("/proceso/{proceso}")
-	@Produces("application/json")
 	public List<MyProcessInstance> listarInstanciasProceso(@PathParam("proceso") String proceso) {
 		System.out.println("listarInstanciasProceso");
 		return objInstancia.listarInstanciasProceso(proceso);
@@ -37,7 +37,6 @@ public class InstanciasController {
 
 	@GET
 	@Path("/listar")
-	@Produces("application/json")
 	public List<MyProcessInstance> listarInstancias() {
 		System.out.println("listarInstancias");
 		return objInstancia.listarInstancias();
@@ -45,7 +44,6 @@ public class InstanciasController {
 
 	@DELETE
 	@Path("/{instancia}")
-	@Produces("application/json")
 	public Map<String, Object> eliminarInstancia(@PathParam("instancia") String instancia) {
 		System.out.println("eliminarInstancia");
 		Map<String, Object> respuesta = new HashMap<String, Object>();

@@ -1,6 +1,8 @@
 package sig.rest.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -19,6 +21,7 @@ import sig.camunda.ejb.MensajesInterface;
 @Stateless
 @LocalBean
 @Path("/mensajes")
+@Produces("application/json")
 public class MensajesController {
 
 	@EJB
@@ -29,7 +32,6 @@ public class MensajesController {
 
 	@GET
 	@Path("/instancia/{instancia}")
-	@Produces("application/json")
 	public List<MyEventSubscription> listarMensajes(@PathParam("instancia") String instancia) {
 		System.out.println("listarMensajes");
 		return objInterface.listarMensajes(instancia);
@@ -38,13 +40,14 @@ public class MensajesController {
 	@PUT
 	@Path("/completar")
 	@Consumes({MediaType.APPLICATION_JSON})
-//	@Produces("application/json")
-	@Produces({MediaType.TEXT_PLAIN})
-	public String  completarMensaje(MyEventSubscription Evento) throws Exception{
+	public Map<String, Object>  completarMensaje(MyEventSubscription Evento) throws Exception{
 		System.out.println("completarMensaje");
 		objInterface.completarMensaje(Evento);
-				        
-		return "completo";
+		
+		
+		Map<String, Object> respuesta = new HashMap<String, Object>();
+		respuesta.put("success", "exito");
+		return respuesta;
 	}
 	
 }

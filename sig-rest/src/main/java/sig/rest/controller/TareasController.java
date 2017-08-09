@@ -20,6 +20,7 @@ import sig.camunda.ejb.TareasInterface;
 @Stateless
 @LocalBean
 @Path("/tareas")
+@Produces("application/json")
 public class TareasController {
 
 	@EJB
@@ -30,14 +31,12 @@ public class TareasController {
 
 	@GET
 	@Path("/listar/instancia/{instancia}")
-	@Produces("application/json")
 	public List<MyTask> listarTareasPendientes(@PathParam("instancia") String instancia) {
 		return objTarea.listarTareasPendientes(instancia);
 	}
 
 	@GET
 	@Path("/listar/persona/{persona}")
-	@Produces("application/json")
 	public List<MyTask> listarTareasPendientesUsuario(@PathParam("persona") String persona) {
 		return objTarea.listarTareasPendientesUsuario(persona);
 
@@ -45,23 +44,24 @@ public class TareasController {
 
 	@PUT
 	@Path("/completar/tarea/{tarea}")
-	@Produces("application/json")
 	public Map<String, Object> complearTarea(@PathParam("tarea") String tarea) {
-		objTarea.completarTarea(tarea);
+		
+		
+		
 		Map<String, Object> respuesta = new HashMap<String, Object>();
-		respuesta.put("respuesta", "se completo tarea");
+		respuesta.put("success", "true");
+		objTarea.completarTarea(tarea);
 		return respuesta;
 	}
 
 	@PUT
 	@Path("/asignar/tarea/{tarea}/persona/{persona}")
-	@Produces("application/json")
 	public Map<String, Object> asignarUsuarioTarea(@PathParam("tarea") String tarea,
 			@PathParam("persona") String persona) {
 		objTarea.asignarUsurioTarea(tarea, persona);
 
 		Map<String, Object> respuesta = new HashMap<String, Object>();
-		respuesta.put("respuesta", "se asigno");
+		respuesta.put("success", "true");
 		return respuesta;
 	}
 }

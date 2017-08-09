@@ -15,5 +15,5 @@ public interface ProcesosInterface {
 
 	Map<String, Object> iniciarProceso(String NombreProceso);
 	
-	Map<String, Object> iniciarProceso(String NombreProceso,Map<String, Object> variables);
+	Map<String, Object> iniciarProcesos(String NombreProceso,Map<String, Object> variables);
 }

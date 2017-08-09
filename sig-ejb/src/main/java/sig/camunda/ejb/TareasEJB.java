@@ -2,7 +2,6 @@ package sig.camunda.ejb;
 
 import java.util.List;
 
-
 import javax.ejb.Stateless;
 
 import com.sig.camunda.bpm_dto.MyTask;
@@ -27,18 +26,19 @@ public class TareasEJB implements TareasInterface {
 
 	@Override
 	public void completarTarea(String tarea) {
-		// 
+		//
 		CamundaEngine camunda = new CamundaEngine();
 
-		camunda.taskComplete(tarea);
+		System.out.println("completar tarea desde lib");
+		camunda.taskComplete(tarea, "var2:", "2");
 	}
 
 	@Override
 	public void asignarUsurioTarea(String tarea, String persona) {
-		// 
+		//
 		CamundaEngine camunda = new CamundaEngine();
 
-		camunda.taskAssignee( tarea, persona);
+		camunda.taskAssignee(tarea, persona);
 	}
 
 }

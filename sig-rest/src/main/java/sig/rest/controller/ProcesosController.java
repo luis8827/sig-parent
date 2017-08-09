@@ -14,13 +14,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.sig.camunda.bpm_dto.MyEventSubscription;
-
 import sig.camunda.ejb.ProcesosInterface;
 
 @Stateless
 @LocalBean
 @Path("/procesos")
+@Produces("application/json")
 public class ProcesosController {
 
 	@EJB
@@ -31,7 +30,6 @@ public class ProcesosController {
 
 	@GET
 	@Path("/")
-	@Produces("application/json")
 	public List<String> listarProcesos() {
 		System.out.println("listarProcesos");
 		return objProceso.listarProcesos();
@@ -39,7 +37,6 @@ public class ProcesosController {
 
 	@GET
 	@Path("/iniciar/{idproceso}")
-	@Produces("application/json")
 	public Map<String, Object> iniciarProceso(@PathParam("idproceso") String idproceso) {
 		System.out.println("iniciarProceso");
 		return objProceso.iniciarProceso(idproceso);
@@ -48,14 +45,12 @@ public class ProcesosController {
 	@POST
 	@Path("/iniciar/{idproceso}")
 	@Consumes({ MediaType.APPLICATION_JSON })
-	// @Produces("application/json")
-	@Produces({ MediaType.TEXT_PLAIN })
-	public String iniciarProcesoVariables(@PathParam("idproceso") String idproceso, Map<String, Object> variables)
-			throws Exception {
-		System.out.println("iniciarProceso");
+	public Map<String, Object> iniciarProcesoVariables(@PathParam("idproceso") String idproceso,
+			Map<String, Object> variables) throws Exception {
+		System.out.println("iniciarProcesoVariables");
 
-		// return objProceso.iniciarProceso(idproceso,Evento);
-		return "creo";
+		return objProceso.iniciarProcesos(idproceso, variables);
+
 	}
 
 }
