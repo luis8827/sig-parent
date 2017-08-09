@@ -11,3 +11,4 @@ target/
 build.xml
 build.properties.example
 datasource.properties
+.tern-project
