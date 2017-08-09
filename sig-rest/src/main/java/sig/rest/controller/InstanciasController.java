@@ -25,7 +25,6 @@ public class InstanciasController {
 	private InstanciasInterface objInstancia;
 
 	public InstanciasController() {
-
 	}
 
 	@GET

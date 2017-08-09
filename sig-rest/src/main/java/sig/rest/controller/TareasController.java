@@ -26,7 +26,6 @@ public class TareasController {
 	private TareasInterface objTarea;
 
 	public TareasController() {
-
 	}
 
 	@GET
@@ -34,7 +33,6 @@ public class TareasController {
 	@Produces("application/json")
 	public List<MyTask> listarTareasPendientes(@PathParam("instancia") String instancia) {
 		return objTarea.listarTareasPendientes(instancia);
-
 	}
 
 	@GET
@@ -58,7 +56,8 @@ public class TareasController {
 	@PUT
 	@Path("/asignar/tarea/{tarea}/persona/{persona}")
 	@Produces("application/json")
-	public Map<String, Object> asignarUsuarioTarea(@PathParam("tarea") String tarea,@PathParam("persona") String persona) {
+	public Map<String, Object> asignarUsuarioTarea(@PathParam("tarea") String tarea,
+			@PathParam("persona") String persona) {
 		objTarea.asignarUsurioTarea(tarea, persona);
 
 		Map<String, Object> respuesta = new HashMap<String, Object>();

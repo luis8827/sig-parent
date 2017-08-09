@@ -23,7 +23,6 @@ public class ProcesosController {
 	private ProcesosInterface objProceso;
 
 	public ProcesosController() {
-
 	}
 
 	@GET
@@ -33,8 +32,6 @@ public class ProcesosController {
 		System.out.println("listarProcesos");
 		return objProceso.listarProcesos();
 	}
-
-
 
 	@GET
 	@Path("/iniciar/{idproceso}")
