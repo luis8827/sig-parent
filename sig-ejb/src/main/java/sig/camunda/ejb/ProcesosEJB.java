@@ -1,5 +1,6 @@
 package sig.camunda.ejb;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import javax.ejb.Stateless;
 
 import com.sig.camunda.bpm_lib.CamundaEngine;
+import com.sig.camunda.bpm_lib.CamundaAuthentication;
 
 import sig.ejb.dto.procesoDTO;
 import sig.ejb.dto.variableDTO;
@@ -15,9 +17,19 @@ import sig.ejb.dto.variableDTO;
 public class ProcesosEJB implements ProcesosInterface {
 
 	@Override
-	public List<String> listarProcesos() {
+	public List<String> listarProcesos(String usuario) {
 		CamundaEngine camunda = new CamundaEngine();
-		return camunda.getProcessDefinitions();
+
+		CamundaAuthentication auth = new CamundaAuthentication();
+		List<String> lista_permitida = new ArrayList<>();
+
+		for (String proceso : camunda.getProcessDefinitions()) {
+			if (auth.isAuthorizationReadProcessDefinition(usuario, proceso)) {
+				lista_permitida.add(proceso);
+			}
+		}
+
+		return lista_permitida;
 	}
 
 	@Override

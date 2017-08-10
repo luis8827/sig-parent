@@ -30,18 +30,18 @@ public class ProcesosController {
 	}
 
 	@GET
-	@Path("/")
-	public List<String> listarProcesos() {
+	@Path("/{usuario}")
+	public List<String> listarProcesos(@PathParam("usuario") String usuario) {
 		System.out.println("listarProcesos");
-		return objProceso.listarProcesos();
+		return objProceso.listarProcesos(usuario);
 	}
 
-	@GET
-	@Path("/iniciar/{idproceso}")
-	public Map<String, Object> iniciarProceso2(@PathParam("idproceso") String idproceso) {
-		System.out.println("iniciarProceso2");
-		return objProceso.iniciarProceso(idproceso);
-	}
+//	@GET
+//	@Path("/iniciar/{idproceso}")
+//	public Map<String, Object> iniciarProceso2(@PathParam("idproceso") String idproceso) {
+//		System.out.println("iniciarProceso2");
+//		return objProceso.iniciarProceso(idproceso);
+//	}
 
 	@POST
 	@Path("/iniciar")

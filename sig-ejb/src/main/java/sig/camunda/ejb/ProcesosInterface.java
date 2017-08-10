@@ -13,7 +13,7 @@ import sig.ejb.dto.procesoDTO;
 @Local
 public interface ProcesosInterface {
 
-	List<String> listarProcesos();
+	List<String> listarProcesos(String usuario);
 
 	Map<String, Object> iniciarProceso(String NombreProceso);
 	
