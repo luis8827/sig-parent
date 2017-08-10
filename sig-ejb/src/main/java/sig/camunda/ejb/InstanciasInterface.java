@@ -1,6 +1,7 @@
 package sig.camunda.ejb;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Local;
 
@@ -15,4 +16,5 @@ public interface InstanciasInterface {
 
 	void eliminarInstancia(String instancia);
 	
+	Map<String,Object> getVariables(String processInstanceId);
 }

@@ -47,8 +47,21 @@ public class InstanciasController {
 	public Map<String, Object> eliminarInstancia(@PathParam("instancia") String instancia) {
 		System.out.println("eliminarInstancia");
 		Map<String, Object> respuesta = new HashMap<String, Object>();
-		respuesta.put("respuesta", "se elimino");
+		respuesta.put("success", "true");
+		objInstancia.eliminarInstancia(instancia);
 		return respuesta;
 	}
+	
+	
+	//	ler variables de una instancia
+	
+	@GET
+	@Path("/instancia/{instancia}/variables/")
+	public Map<String, Object> listarVariablesInstancia(@PathParam("instancia") String instancia) {
+		
+		System.out.println("listarVariablesInstancia");		
+		return objInstancia.getVariables(instancia);
+	}
+	//cambiar valores de una instancia
 
 }

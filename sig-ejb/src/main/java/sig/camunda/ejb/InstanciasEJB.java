@@ -2,6 +2,7 @@ package sig.camunda.ejb;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 
@@ -28,5 +29,13 @@ public class InstanciasEJB implements InstanciasInterface {
 		CamundaEngine camunda = new CamundaEngine();
 		camunda.processDelete(instancia);
 	}
+
+	@Override
+	public Map<String, Object> getVariables(String processInstanceId) {
+		CamundaEngine camunda = new CamundaEngine();
+		return camunda.getVariables(processInstanceId);
+	}
+	
+	
 
 }
