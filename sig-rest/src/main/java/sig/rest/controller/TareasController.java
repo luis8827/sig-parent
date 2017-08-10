@@ -46,8 +46,6 @@ public class TareasController {
 	@Path("/completar/tarea/{tarea}")
 	public Map<String, Object> complearTarea(@PathParam("tarea") String tarea) {
 		
-		
-		
 		Map<String, Object> respuesta = new HashMap<String, Object>();
 		respuesta.put("success", "true");
 		objTarea.completarTarea(tarea);

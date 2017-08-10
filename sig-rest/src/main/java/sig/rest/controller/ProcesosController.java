@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import sig.camunda.ejb.ProcesosInterface;
+import sig.ejb.dto.*;
 
 @Stateless
 @LocalBean
@@ -37,20 +38,17 @@ public class ProcesosController {
 
 	@GET
 	@Path("/iniciar/{idproceso}")
-	public Map<String, Object> iniciarProceso(@PathParam("idproceso") String idproceso) {
-		System.out.println("iniciarProceso");
+	public Map<String, Object> iniciarProceso2(@PathParam("idproceso") String idproceso) {
+		System.out.println("iniciarProceso2");
 		return objProceso.iniciarProceso(idproceso);
 	}
 
 	@POST
-	@Path("/iniciar/{idproceso}")
+	@Path("/iniciar")
 	@Consumes({ MediaType.APPLICATION_JSON })
-	public Map<String, Object> iniciarProcesoVariables(@PathParam("idproceso") String idproceso,
-			Map<String, Object> variables) throws Exception {
-		System.out.println("iniciarProcesoVariables");
-
-		return objProceso.iniciarProcesos(idproceso, variables);
-
+	public  Map<String, Object> iniciarProceso(procesoDTO proceso) throws Exception {
+		System.out.println("iniciarProceso");
+		return objProceso.iniciarProcesos(proceso);
 	}
 
 }

@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.ejb.Local;
 
+import sig.ejb.dto.procesoDTO;
+
 
 
 @Local
@@ -15,5 +17,5 @@ public interface ProcesosInterface {
 
 	Map<String, Object> iniciarProceso(String NombreProceso);
 	
-	Map<String, Object> iniciarProcesos(String NombreProceso,Map<String, Object> variables);
+	Map<String, Object> iniciarProcesos(procesoDTO proceso);
 }
