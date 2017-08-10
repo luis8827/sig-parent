@@ -1,12 +1,23 @@
 package sig.camunda.ejb;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.ejb.Local;
+
+import sig.ejb.dto.usuarioDTO;
+
 @Local
 public interface UsuariosInterface {
 
-	
-	Map<String, Object> listarUsuarios();
-	Map<String, Object> getUsuario();
+	List<String> listarUsuarios();
+
+	boolean loginUsuario(String usuario, String pass);
+
+	void createUser(usuarioDTO usuario);
+
+	void userAuthorizationCreate(String user, String resource);
+
+	void userAuthorizationRead(String user, String resource);
+
 }

@@ -52,8 +52,7 @@ public class ProcesosEJB implements ProcesosInterface {
 
 		Map<String, Object> resultado = new HashMap<String, Object>();
 
-		resultado.put("idinstancia", camunda.processCreate(proceso.getIdproceso(), proceso.getBusinessKey(),
-				proceso.getDescription(), proceso.getPerson(), variables));
+		resultado.put("idinstancia", camunda.processCreate(proceso.getIdproceso(), proceso.getBusinessKey(),proceso.getDescription(), proceso.getPerson(), variables));
 		return resultado;
 	}
 }
