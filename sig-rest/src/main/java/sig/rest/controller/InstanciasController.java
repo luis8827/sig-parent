@@ -81,7 +81,7 @@ public class InstanciasController {
 		if (objInstancia.updateDescription(descripcion)) {
 			respuesta.put("success", true);
 		}
-		{
+		else{
 			respuesta.put("success", false);
 		}
 		return respuesta;
@@ -96,8 +96,7 @@ public class InstanciasController {
 
 		if (objInstancia.updateDescriptionAndPerson(descripcion)) {
 			respuesta.put("success", true);
-		}
-		{
+		} else {
 			respuesta.put("success", false);
 		}
 		return respuesta;
