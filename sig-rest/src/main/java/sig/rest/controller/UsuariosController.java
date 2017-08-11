@@ -48,9 +48,9 @@ public class UsuariosController {
 		Map<String, Object> respuesta = new HashMap<String, Object>();
 
 		if (objUsuarios.loginUsuario(usuario.getUsuario(), usuario.getPassword())) {
-			respuesta.put("success", "true");
+			respuesta.put("success", true);
 		} else {
-			respuesta.put("success", "false");
+			respuesta.put("success", false);
 		}
 		return respuesta;
 	}
@@ -62,7 +62,7 @@ public class UsuariosController {
 		System.out.println("crearUsuario");
 		Map<String, Object> respuesta = new HashMap<String, Object>();
 		objUsuarios.createUser(usuario);
-		respuesta.put("success", "true");
+		respuesta.put("success", true);
 		return respuesta;
 	}
 
@@ -73,10 +73,11 @@ public class UsuariosController {
 		System.out.println("autorizaCrearInstancia");
 		Map<String, Object> respuesta = new HashMap<String, Object>();
 		objUsuarios.userAuthorizationCreate(usuarioproceso.getUsuario(), usuarioproceso.getProceso());
-		respuesta.put("success", "true");
+		respuesta.put("success", true);
 		return respuesta;
 
 	}
+
 	@POST
 	@Path("/autoriza_lectura")
 	@Consumes({ MediaType.APPLICATION_JSON })
@@ -84,7 +85,7 @@ public class UsuariosController {
 		System.out.println("autorizaCrearInstancia");
 		Map<String, Object> respuesta = new HashMap<String, Object>();
 		objUsuarios.userAuthorizationRead(usuarioproceso.getUsuario(), usuarioproceso.getProceso());
-		respuesta.put("success", "true");
+		respuesta.put("success", true);
 		return respuesta;
 
 	}

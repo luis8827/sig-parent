@@ -43,17 +43,19 @@ public class ProcesosEJB implements ProcesosInterface {
 	@Override
 	public Map<String, Object> iniciarProcesos(procesoDTO proceso) {
 		CamundaEngine camunda = new CamundaEngine();
-
-		Map<String, Object> variables = new HashMap<String, Object>();
-
-		for (variableDTO v : proceso.getVariables()) {
-			variables.put(v.getNombre(), v.getValor());
-		}
-
+		CamundaAuthentication auth = new CamundaAuthentication();
 		Map<String, Object> resultado = new HashMap<String, Object>();
 
-		resultado.put("idinstancia", camunda.processCreate(proceso.getIdproceso(), proceso.getBusinessKey(),
-				proceso.getDescription(), proceso.getPerson(), variables));
+		if (auth.isAuthorizationCreateProcessInstance(proceso.getPerson(), proceso.getIdproceso())) {
+			Map<String, Object> variables = new HashMap<String, Object>();
+
+			for (variableDTO v : proceso.getVariables()) {
+				variables.put(v.getNombre(), v.getValor());
+			}
+			resultado.put("idinstancia", camunda.processCreate(proceso.getIdproceso(), proceso.getBusinessKey(),
+					proceso.getDescription(), proceso.getPerson(), variables));
+		}
+
 		return resultado;
 	}
 }

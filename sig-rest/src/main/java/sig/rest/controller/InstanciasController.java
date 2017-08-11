@@ -7,15 +7,16 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import com.sig.camunda.bpm_dto.MyProcessInstance;
-import com.sig.camunda.bpm_lib.CamundaEngine;
 
 import sig.camunda.ejb.InstanciasInterface;
 import sig.camunda.ejb.VariablesInterface;
@@ -54,7 +55,7 @@ public class InstanciasController {
 	public Map<String, Object> eliminarInstancia(@PathParam("instancia") String instancia) {
 		System.out.println("eliminarInstancia");
 		Map<String, Object> respuesta = new HashMap<String, Object>();
-		respuesta.put("success", "true");
+		respuesta.put("success", true);
 		objInstancia.eliminarInstancia(instancia);
 		return respuesta;
 	}
@@ -72,30 +73,32 @@ public class InstanciasController {
 
 	@PUT
 	@Path("/updateDescription")
-	public Map<String, Object> updateDescription(descripcionDTO descripcion) {
+	@Consumes({ MediaType.APPLICATION_JSON })
+	public Map<String, Object> updateDescription(descripcionDTO descripcion) throws Exception {
 
 		Map<String, Object> respuesta = new HashMap<String, Object>();
 
 		if (objInstancia.updateDescription(descripcion)) {
-			respuesta.put("success", "true");
+			respuesta.put("success", true);
 		}
 		{
-			respuesta.put("success", "false");
+			respuesta.put("success", false);
 		}
 		return respuesta;
 	}
 
 	@PUT
 	@Path("/updateDescriptionAndPerson")
-	public Map<String, Object> updateDescriptionAndPerson(descripcionDTO descripcion) {
+	@Consumes({ MediaType.APPLICATION_JSON })
+	public Map<String, Object> updateDescriptionAndPerson(descripcionDTO descripcion) throws Exception {
 
 		Map<String, Object> respuesta = new HashMap<String, Object>();
 
 		if (objInstancia.updateDescriptionAndPerson(descripcion)) {
-			respuesta.put("success", "true");
+			respuesta.put("success", true);
 		}
 		{
-			respuesta.put("success", "false");
+			respuesta.put("success", false);
 		}
 		return respuesta;
 
@@ -108,17 +111,17 @@ public class InstanciasController {
 		Map<String, Object> respuesta = new HashMap<String, Object>();
 
 		objInstancia.suspendInstance(instancia);
-		respuesta.put("success", "true");
+		respuesta.put("success", true);
 		return respuesta;
 	}
 
 	@PUT
 	@Path("/activateInstance/{instancia}")
-	public Map<String, Object> activateInstance(@PathParam("instancia") String instancia) {
+	public Map<String, Object> activateInstance(@PathParam("instancia") String instancia) throws Exception {
 		Map<String, Object> respuesta = new HashMap<String, Object>();
 
 		objInstancia.activateInstance(instancia);
-		respuesta.put("success", "true");
+		respuesta.put("success", true);
 		return respuesta;
 	}
 

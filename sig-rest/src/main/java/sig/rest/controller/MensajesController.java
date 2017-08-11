@@ -46,7 +46,7 @@ public class MensajesController {
 		
 		
 		Map<String, Object> respuesta = new HashMap<String, Object>();
-		respuesta.put("success", "exito");
+		respuesta.put("success", true);
 		return respuesta;
 	}
 	
