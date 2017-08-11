@@ -4,28 +4,24 @@ import java.util.Map;
 
 public class RespuestaDTO {
 	private boolean success;
-	private Map<String, Object> data;
-
-	public RespuestaDTO(boolean success, Map<String, Object> data) {
+	private Object data;
+	public RespuestaDTO() {
 		super();
-		this.success = success;
-		this.data = data;
 	}
-
 	public boolean isSuccess() {
 		return success;
 	}
-
 	public void setSuccess(boolean success) {
 		this.success = success;
 	}
-
-	public Map<String, Object> getData() {
+	public Object getData() {
 		return data;
 	}
-
-	public void setData(Map<String, Object> data) {
+	public void setData(Object data) {
 		this.data = data;
 	}
 
+	
+	
+	
 }

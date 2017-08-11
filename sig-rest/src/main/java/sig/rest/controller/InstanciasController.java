@@ -1,8 +1,6 @@
 package sig.rest.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -16,11 +14,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.sig.camunda.bpm_dto.MyProcessInstance;
-
 import sig.camunda.ejb.InstanciasInterface;
 import sig.camunda.ejb.VariablesInterface;
-import sig.ejb.dto.descripcionDTO;;
+import sig.ejb.dto.descripcionDTO;
+import sig.rest.dto.RespuestaDTO;;
 
 @Stateless
 @LocalBean
@@ -38,90 +35,104 @@ public class InstanciasController {
 
 	@GET
 	@Path("/proceso/{proceso}")
-	public List<MyProcessInstance> listarInstanciasProceso(@PathParam("proceso") String proceso) {
+	public RespuestaDTO listarInstanciasProceso(@PathParam("proceso") String proceso) {
 		System.out.println("listarInstanciasProceso");
-		return objInstancia.listarInstanciasProceso(proceso);
+
+		RespuestaDTO rpta = new RespuestaDTO();
+		rpta.setData(objInstancia.listarInstanciasProceso(proceso));
+		rpta.setSuccess(true);
+
+		return rpta;
 	}
 
 	@GET
 	@Path("/listar")
-	public List<MyProcessInstance> listarInstancias() {
-		System.out.println("listarInstancias");
-		return objInstancia.listarInstancias();
+	public RespuestaDTO listarInstancias() {
+		System.out.println("listarInstanciasProceso");
+
+		RespuestaDTO rpta = new RespuestaDTO();
+		rpta.setData(objInstancia.listarInstancias());
+		rpta.setSuccess(true);
+		return rpta;
 	}
 
 	@DELETE
 	@Path("/{instancia}")
-	public Map<String, Object> eliminarInstancia(@PathParam("instancia") String instancia) {
+	public RespuestaDTO eliminarInstancia(@PathParam("instancia") String instancia) {
 		System.out.println("eliminarInstancia");
-		Map<String, Object> respuesta = new HashMap<String, Object>();
-		respuesta.put("success", true);
+		RespuestaDTO rpta = new RespuestaDTO();
+
 		objInstancia.eliminarInstancia(instancia);
-		return respuesta;
+		rpta.setSuccess(true);
+		return rpta;
 	}
 
 	// ler variables de una instancia
 
 	@GET
 	@Path("/instancia/{instancia}/variables/")
-	public Map<String, Object> listarVariablesInstancia(@PathParam("instancia") String instancia) {
-
+	public RespuestaDTO listarVariablesInstancia(@PathParam("instancia") String instancia) {
 		System.out.println("listarVariablesInstancia");
-		return objVariables.getVariables(instancia);
+
+		RespuestaDTO rpta = new RespuestaDTO();
+		rpta.setData(objVariables.getVariables(instancia));
+		rpta.setSuccess(true);
+		return rpta;
 	}
 	// cambiar valores de una instancia
 
 	@PUT
 	@Path("/updateDescription")
 	@Consumes({ MediaType.APPLICATION_JSON })
-	public Map<String, Object> updateDescription(descripcionDTO descripcion) throws Exception {
-
-		Map<String, Object> respuesta = new HashMap<String, Object>();
+	public RespuestaDTO updateDescription(descripcionDTO descripcion) throws Exception {
+		RespuestaDTO rpta = new RespuestaDTO();
 
 		if (objInstancia.updateDescription(descripcion)) {
-			respuesta.put("success", true);
+			rpta.setSuccess(true);
+		} else {
+
+			rpta.setSuccess(false);
 		}
-		else{
-			respuesta.put("success", false);
-		}
-		return respuesta;
+
+		return rpta;
+
 	}
 
 	@PUT
 	@Path("/updateDescriptionAndPerson")
 	@Consumes({ MediaType.APPLICATION_JSON })
-	public Map<String, Object> updateDescriptionAndPerson(descripcionDTO descripcion) throws Exception {
-
-		Map<String, Object> respuesta = new HashMap<String, Object>();
+	public RespuestaDTO updateDescriptionAndPerson(descripcionDTO descripcion) throws Exception {
+		RespuestaDTO rpta = new RespuestaDTO();
 
 		if (objInstancia.updateDescriptionAndPerson(descripcion)) {
-			respuesta.put("success", true);
+			rpta.setSuccess(true);
 		} else {
-			respuesta.put("success", false);
-		}
-		return respuesta;
 
+			rpta.setSuccess(false);
+		}
+
+		return rpta;
 	}
 
 	@PUT
 	@Path("/sustenderInstancia/{instancia}")
-	public Map<String, Object> suspendInstance(@PathParam("instancia") String instancia) {
-
-		Map<String, Object> respuesta = new HashMap<String, Object>();
+	public RespuestaDTO suspendInstance(@PathParam("instancia") String instancia) {
+		RespuestaDTO rpta = new RespuestaDTO();
 
 		objInstancia.suspendInstance(instancia);
-		respuesta.put("success", true);
-		return respuesta;
+				
+				rpta.setSuccess(true);
+		return rpta;
 	}
 
 	@PUT
 	@Path("/activateInstance/{instancia}")
-	public Map<String, Object> activateInstance(@PathParam("instancia") String instancia) throws Exception {
-		Map<String, Object> respuesta = new HashMap<String, Object>();
-
+	public RespuestaDTO activateInstance(@PathParam("instancia") String instancia) throws Exception {
+		RespuestaDTO rpta = new RespuestaDTO();
+		
 		objInstancia.activateInstance(instancia);
-		respuesta.put("success", true);
-		return respuesta;
+		rpta.setSuccess(true);
+		return rpta;
 	}
 
 }

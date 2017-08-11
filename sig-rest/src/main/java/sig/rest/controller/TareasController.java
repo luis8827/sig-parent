@@ -1,9 +1,5 @@
 package sig.rest.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -13,9 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.sig.camunda.bpm_dto.MyTask;
-
 import sig.camunda.ejb.TareasInterface;
+import sig.rest.dto.RespuestaDTO;
 
 @Stateless
 @LocalBean
@@ -31,35 +26,49 @@ public class TareasController {
 
 	@GET
 	@Path("/listar/instancia/{instancia}")
-	public List<MyTask> listarTareasPendientes(@PathParam("instancia") String instancia) {
-		return objTarea.listarTareasPendientes(instancia);
+	public RespuestaDTO listarTareasPendientes(@PathParam("instancia") String instancia) {
+
+		RespuestaDTO rpta = new RespuestaDTO();
+		rpta.setData(objTarea.listarTareasPendientes(instancia));
+		rpta.setSuccess(true);
+
+		return rpta;
 	}
 
 	@GET
 	@Path("/listar/persona/{persona}")
-	public List<MyTask> listarTareasPendientesUsuario(@PathParam("persona") String persona) {
-		return objTarea.listarTareasPendientesUsuario(persona);
+	public RespuestaDTO listarTareasPendientesUsuario(@PathParam("persona") String persona) {
 
+		RespuestaDTO rpta = new RespuestaDTO();
+		rpta.setData(objTarea.listarTareasPendientesUsuario(persona));
+		rpta.setSuccess(true);
+
+		return rpta;
 	}
 
 	@PUT
 	@Path("/completar/tarea/{tarea}")
-	public Map<String, Object> complearTarea(@PathParam("tarea") String tarea) {
-		
-		Map<String, Object> respuesta = new HashMap<String, Object>();
-		respuesta.put("success", true);
+	public RespuestaDTO complearTarea(@PathParam("tarea") String tarea) {
+
 		objTarea.completarTarea(tarea);
-		return respuesta;
+
+		RespuestaDTO rpta = new RespuestaDTO();
+
+		rpta.setSuccess(true);
+
+		return rpta;
 	}
 
 	@PUT
 	@Path("/asignar/tarea/{tarea}/persona/{persona}")
-	public Map<String, Object> asignarUsuarioTarea(@PathParam("tarea") String tarea,
+	public RespuestaDTO asignarUsuarioTarea(@PathParam("tarea") String tarea,
 			@PathParam("persona") String persona) {
 		objTarea.asignarUsurioTarea(tarea, persona);
 
-		Map<String, Object> respuesta = new HashMap<String, Object>();
-		respuesta.put("success", true);
-		return respuesta;
+		RespuestaDTO rpta = new RespuestaDTO();
+
+		rpta.setSuccess(true);
+
+		return rpta;
 	}
 }

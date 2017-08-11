@@ -1,8 +1,5 @@
 package sig.rest.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -16,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 import sig.camunda.ejb.ProcesosInterface;
 import sig.ejb.dto.*;
+import sig.rest.dto.RespuestaDTO;
 
 @Stateless
 @LocalBean
@@ -31,9 +29,14 @@ public class ProcesosController {
 
 	@GET
 	@Path("/{usuario}")
-	public List<String> listarProcesos(@PathParam("usuario") String usuario) {
+	public RespuestaDTO listarProcesos(@PathParam("usuario") String usuario) {
 		System.out.println("listarProcesos");
-		return objProceso.listarProcesos(usuario);
+		
+		RespuestaDTO rpta = new RespuestaDTO();
+		rpta.setData(objProceso.listarProcesos(usuario));
+		rpta.setSuccess(true);
+
+		return rpta;
 	}
 
 //	@GET
@@ -46,9 +49,14 @@ public class ProcesosController {
 	@POST
 	@Path("/iniciar")
 	@Consumes({ MediaType.APPLICATION_JSON })
-	public  Map<String, Object> iniciarProceso(procesoDTO proceso) throws Exception {
+	public RespuestaDTO iniciarProceso(procesoDTO proceso) throws Exception {
 		System.out.println("iniciarProceso");
-		return objProceso.iniciarProcesos(proceso);
+		
+		RespuestaDTO rpta = new RespuestaDTO();
+		rpta.setData(objProceso.iniciarProcesos(proceso));
+		rpta.setSuccess(true);
+
+		return rpta;
 	}
 
 }

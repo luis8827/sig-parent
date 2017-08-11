@@ -1,9 +1,5 @@
 package sig.rest.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -17,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.sig.camunda.bpm_dto.MyEventSubscription;
 import sig.camunda.ejb.MensajesInterface;
+import sig.rest.dto.RespuestaDTO;
 
 @Stateless
 @LocalBean
@@ -32,22 +29,26 @@ public class MensajesController {
 
 	@GET
 	@Path("/instancia/{instancia}")
-	public List<MyEventSubscription> listarMensajes(@PathParam("instancia") String instancia) {
+	public RespuestaDTO listarMensajes(@PathParam("instancia") String instancia) {
 		System.out.println("listarMensajes");
-		return objInterface.listarMensajes(instancia);
+		
+		RespuestaDTO rpta = new RespuestaDTO();
+		rpta.setData(objInterface.listarMensajes(instancia));
+		rpta.setSuccess(true);
+
+		return rpta;
 	}
 
 	@PUT
 	@Path("/completar")
 	@Consumes({MediaType.APPLICATION_JSON})
-	public Map<String, Object>  completarMensaje(MyEventSubscription Evento) throws Exception{
+	public RespuestaDTO  completarMensaje(MyEventSubscription Evento) throws Exception{
 		System.out.println("completarMensaje");
 		objInterface.completarMensaje(Evento);
-		
-		
-		Map<String, Object> respuesta = new HashMap<String, Object>();
-		respuesta.put("success", true);
-		return respuesta;
+
+		RespuestaDTO rpta = new RespuestaDTO();		
+		rpta.setSuccess(true);
+		return rpta;
 	}
 	
 }
