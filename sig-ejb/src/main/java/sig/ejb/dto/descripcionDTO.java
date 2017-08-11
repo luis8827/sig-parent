@@ -1,35 +1,26 @@
 package sig.ejb.dto;
 
-import java.util.List;
+public class descripcionDTO {
 
-public class procesoDTO {
-
-	private String idproceso;
+	private String processDefinitionKey;
 	private String businessKey;
 	private String description;
 	private String person;
-	private List<variableDTO> variables;
 
-	public procesoDTO(String idproceso, String businessKey, String description, String person,
-			List<variableDTO> variables) {
+	public descripcionDTO(String processDefinitionKey, String businessKey, String description, String person) {
 		super();
-		this.idproceso = idproceso;
+		this.processDefinitionKey = processDefinitionKey;
 		this.businessKey = businessKey;
 		this.description = description;
 		this.person = person;
-		this.variables = variables;
 	}
 
-	public procesoDTO() {
-		super();
+	public String getProcessDefinitionKey() {
+		return processDefinitionKey;
 	}
 
-	public String getIdproceso() {
-		return idproceso;
-	}
-
-	public void setIdproceso(String idproceso) {
-		this.idproceso = idproceso;
+	public void setProcessDefinitionKey(String processDefinitionKey) {
+		this.processDefinitionKey = processDefinitionKey;
 	}
 
 	public String getBusinessKey() {
@@ -54,14 +45,6 @@ public class procesoDTO {
 
 	public void setPerson(String person) {
 		this.person = person;
-	}
-
-	public List<variableDTO> getVariables() {
-		return variables;
-	}
-
-	public void setVariables(List<variableDTO> variables) {
-		this.variables = variables;
 	}
 
 }

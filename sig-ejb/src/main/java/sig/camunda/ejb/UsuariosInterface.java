@@ -1,7 +1,6 @@
 package sig.camunda.ejb;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.Local;
 

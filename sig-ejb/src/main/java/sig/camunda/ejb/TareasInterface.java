@@ -1,6 +1,7 @@
 package sig.camunda.ejb;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Local;
 
@@ -17,5 +18,19 @@ public interface TareasInterface {
 
 	void asignarUsurioTarea(String tarea, String persona);
 
+	List<MyTask> taskListByUserAndInstanceId(String processInstanceId, String person);
 
+	List<MyTask> taskListByProcessInstanceId(String processInstanceId);
+
+	List<MyTask> historyTaskListByUser(String processInstanceId, String person);
+
+	void taskComplete(String bpmtaskid, String varKey, Object varValue);
+
+	void taskComplete(String bpmtaskid, Map<String, Object> variables);
+
+	void taskClaim(String bpmtaskid, String person);
+
+	void taskUpdateDescription(String bpmtaskid, String description);
+
+	void taskDelegate(String bpmtaskid, String person);
 }

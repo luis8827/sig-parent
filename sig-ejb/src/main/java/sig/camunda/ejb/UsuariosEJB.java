@@ -1,12 +1,8 @@
 package sig.camunda.ejb;
 
 import java.util.List;
-import java.util.Map;
-
 import javax.ejb.Stateless;
-
 import com.sig.camunda.bpm_lib.CamundaAuthentication;
-
 import sig.ejb.dto.usuarioDTO;
 
 @Stateless
