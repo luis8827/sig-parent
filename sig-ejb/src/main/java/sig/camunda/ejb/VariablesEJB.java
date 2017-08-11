@@ -2,8 +2,11 @@ package sig.camunda.ejb;
 
 import java.util.Map;
 
+import javax.ejb.Stateless;
+
 import com.sig.camunda.bpm_lib.CamundaEngine;
 
+@Stateless
 public class VariablesEJB implements VariablesInterface{
 
 	@Override
