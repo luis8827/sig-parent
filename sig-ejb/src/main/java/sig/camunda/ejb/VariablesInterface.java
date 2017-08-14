@@ -11,8 +11,8 @@ public interface VariablesInterface {
 
 	void instanceSetVariableByTaskId(String bpmtaskid, String key, Object value);
 
-	void instanceSetVariable(String processInstanceId, Map<String, Object> variables);
+	void instanceSetVariable(String bpmtaskid, Map<String, Object> variables);
 
-	Object getVariable(String executionId, String variableName);
+	Object getVariable(String bpmtaskid, String variableName);
 	
 }

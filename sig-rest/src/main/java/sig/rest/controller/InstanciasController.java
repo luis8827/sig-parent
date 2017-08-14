@@ -64,10 +64,11 @@ public class InstanciasController {
 
 		objInstancia.eliminarInstancia(instancia);
 		rpta.setSuccess(true);
+		rpta.setMensaje("Se elimino instancia");
 		return rpta;
 	}
 
-	// ler variables de una instancia
+	// lee variables de una instancia
 
 	@GET
 	@Path("/instancia/{instancia}/variables/")
@@ -77,6 +78,7 @@ public class InstanciasController {
 		RespuestaDTO rpta = new RespuestaDTO();
 		rpta.setData(objVariables.getVariables(instancia));
 		rpta.setSuccess(true);
+		
 		return rpta;
 	}
 	// cambiar valores de una instancia

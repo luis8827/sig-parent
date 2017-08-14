@@ -17,20 +17,21 @@ public class VariablesEJB implements VariablesInterface{
 
 	@Override
 	public void instanceSetVariableByTaskId(String bpmtaskid, String key, Object value) {
-		// TODO Auto-generated method stub
-		
+		CamundaEngine camunda = new CamundaEngine();
+		camunda.instanceSetVariableByTaskId(bpmtaskid, key, value);
 	}
 
 	@Override
-	public void instanceSetVariable(String processInstanceId, Map<String, Object> variables) {
-		// TODO Auto-generated method stub
-		
+	public void instanceSetVariable(String bpmtaskid, Map<String, Object> variables) {
+		CamundaEngine camunda = new CamundaEngine();
+		camunda.instanceSetVariableByTaskId(bpmtaskid, variables);
 	}
 
 	@Override
-	public Object getVariable(String executionId, String variableName) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object getVariable(String processInstanceId, String variableName) {
+		CamundaEngine camunda = new CamundaEngine();
+		return camunda.getVariable(processInstanceId, variableName);
+		
 	}
 
 }
