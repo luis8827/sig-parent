@@ -11,6 +11,7 @@ import sig.rest.controller.MensajesController;
 import sig.rest.controller.ProcesosController;
 import sig.rest.controller.TareasController;
 import sig.rest.controller.UsuariosController;
+import sig.rest.controller.VariableController;
 
 @ApplicationPath("/camunda")
 public class MyRestApplication extends	Application{
@@ -24,6 +25,7 @@ public class MyRestApplication extends	Application{
 		classes.add(UsuariosController.class);
 		classes.add(InstanciasController.class);
 		classes.add(MensajesController.class);
+		classes.add(VariableController.class);
 		
 		return classes;
 	}

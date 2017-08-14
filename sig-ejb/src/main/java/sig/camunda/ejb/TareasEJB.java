@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.ejb.Stateless;
 
 import com.sig.camunda.bpm_dto.MyTask;
-import com.sig.camunda.bpm_lib.CamundaAuthentication;
 import com.sig.camunda.bpm_lib.CamundaEngine;
 
 @Stateless
