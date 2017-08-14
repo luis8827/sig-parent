@@ -153,7 +153,7 @@ public class TareasController {
 	 *            { "bpmtaskid":"", "description":"" }
 	 */
 	@PUT
-	@Path("/taskClaim")
+	@Path("/taskUpdateDescription")
 	public RespuestaDTO taskUpdateDescription(TareaDTO tarea) throws Exception {
 		RespuestaDTO rpta = new RespuestaDTO();
 		rpta.setSuccess(true);
