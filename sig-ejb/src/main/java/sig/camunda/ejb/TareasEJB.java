@@ -1,5 +1,6 @@
 package sig.camunda.ejb;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,9 @@ import javax.ejb.Stateless;
 
 import com.sig.camunda.bpm_dto.MyTask;
 import com.sig.camunda.bpm_lib.CamundaEngine;
+
+import sig.ejb.dto.TareaDTO;
+import sig.ejb.dto.variableDTO;
 
 @Stateless
 public class TareasEJB implements TareasInterface {
@@ -61,33 +65,38 @@ public class TareasEJB implements TareasInterface {
 	}
 
 	@Override
-	public void taskComplete(String bpmtaskid, String varKey, Object varValue) {
+	public void taskComplete(TareaDTO tarea) {
 		CamundaEngine camunda = new CamundaEngine();
-		camunda.taskComplete(bpmtaskid, varKey, varValue);
+		camunda.taskComplete(tarea.getBpmtaskid(), tarea.getVarKey(), tarea.getVarValue());
 	}
 
 	@Override
-	public void taskComplete(String bpmtaskid, Map<String, Object> variables) {
+	public void taskComplete2(TareaDTO tarea) {
 		CamundaEngine camunda = new CamundaEngine();
-		camunda.taskComplete(bpmtaskid, variables);
+
+		Map<String, Object> variables = new HashMap<String, Object>();
+		for (variableDTO v : tarea.getVariables()) {
+			variables.put(v.getNombre(), v.getValor());
+		}
+		camunda.taskComplete(tarea.getBpmtaskid(), variables);
 	}
 
 	@Override
-	public void taskClaim(String bpmtaskid, String person) {
+	public void taskClaim(TareaDTO tarea) {
 		CamundaEngine camunda = new CamundaEngine();
-		camunda.taskClaim(bpmtaskid, person);
+		camunda.taskClaim(tarea.getBpmtaskid(), tarea.getPerson());
 	}
 
 	@Override
-	public void taskUpdateDescription(String bpmtaskid, String description) {
+	public void taskUpdateDescription(TareaDTO tarea) {
 		CamundaEngine camunda = new CamundaEngine();
-		camunda.taskUpdateDescription(bpmtaskid, description);
+		camunda.taskUpdateDescription(tarea.getBpmtaskid(), tarea.getDescription());
 	}
 
 	@Override
-	public void taskDelegate(String bpmtaskid, String person) {
+	public void taskDelegate(TareaDTO tarea) {
 		CamundaEngine camunda = new CamundaEngine();
-		camunda.taskDelegate(bpmtaskid, person);
+		camunda.taskDelegate(tarea.getBpmtaskid(), tarea.getPerson());
 	}
 
 }

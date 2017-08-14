@@ -7,6 +7,8 @@ import javax.ejb.Local;
 
 import com.sig.camunda.bpm_dto.MyTask;
 
+import sig.ejb.dto.TareaDTO;
+
 @Local
 public interface TareasInterface {
 
@@ -24,13 +26,13 @@ public interface TareasInterface {
 
 	List<MyTask> historyTaskListByUser(String processInstanceId, String person);
 
-	void taskComplete(String bpmtaskid, String varKey, Object varValue);
+	void taskComplete(TareaDTO tarea);
 
-	void taskComplete(String bpmtaskid, Map<String, Object> variables);
+	void taskComplete2(TareaDTO tareas);
 
-	void taskClaim(String bpmtaskid, String person);
+	void taskClaim(TareaDTO tarea);
 
-	void taskUpdateDescription(String bpmtaskid, String description);
+	void taskUpdateDescription(TareaDTO tarea);
 
-	void taskDelegate(String bpmtaskid, String person);
+	void taskDelegate(TareaDTO tarea);
 }

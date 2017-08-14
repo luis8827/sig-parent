@@ -12,8 +12,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import sig.camunda.ejb.TareasInterface;
+import sig.ejb.dto.TareaDTO;
 import sig.rest.dto.RespuestaDTO;
-import sig.rest.dto.TareaDTO;
+
 
 @Stateless
 @LocalBean
@@ -114,7 +115,7 @@ public class TareasController {
 	public RespuestaDTO taskComplete1(TareaDTO tarea) throws Exception {
 		RespuestaDTO rpta = new RespuestaDTO();
 		rpta.setSuccess(true);
-		objTarea.taskComplete(tarea.getBpmtaskid(), tarea.getVarKey(), tarea.getVarValue());
+		objTarea.taskComplete(tarea);
 		return rpta;
 	}
 
@@ -129,7 +130,7 @@ public class TareasController {
 
 		RespuestaDTO rpta = new RespuestaDTO();
 		rpta.setSuccess(true);
-		objTarea.taskComplete(tarea.getBpmtaskid(), tarea.getVariables());
+		objTarea.taskComplete2(tarea);
 		return rpta;
 	}
 
@@ -143,7 +144,7 @@ public class TareasController {
 	public RespuestaDTO taskClaim(TareaDTO tarea) throws Exception {
 		RespuestaDTO rpta = new RespuestaDTO();
 		rpta.setSuccess(true);
-		objTarea.taskClaim(tarea.getBpmtaskid(), tarea.getPerson());
+		objTarea.taskClaim(tarea);
 		return rpta;
 	}
 
@@ -157,7 +158,7 @@ public class TareasController {
 	public RespuestaDTO taskUpdateDescription(TareaDTO tarea) throws Exception {
 		RespuestaDTO rpta = new RespuestaDTO();
 		rpta.setSuccess(true);
-		objTarea.taskUpdateDescription(tarea.getBpmtaskid(), tarea.getDescription());
+		objTarea.taskUpdateDescription(tarea);
 		return rpta;
 	}
 
@@ -171,7 +172,7 @@ public class TareasController {
 	public RespuestaDTO taskDelegate(TareaDTO tarea) throws Exception {
 		RespuestaDTO rpta = new RespuestaDTO();
 		rpta.setSuccess(true);
-		objTarea.taskDelegate(tarea.getBpmtaskid(), tarea.getPerson());
+		objTarea.taskDelegate(tarea);
 		return rpta;
 	}
 }

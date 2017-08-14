@@ -1,18 +1,12 @@
-package sig.rest.dto;
+package sig.ejb.dto;
 
+import java.util.List;
 import java.util.Map;
 
 /**
  * 
- * @author bog
- *{	
- *	"bpmtaskid":"",
- *	"varKey":"",
- *	"varValue":"",
- *	"variables":{},
- *	"person":"",
- *	"description":"",
- *}
+ * @author bog { "bpmtaskid":"", "varKey":"", "varValue":"", "variables":{},
+ *         "person":"", "description":"", }
  */
 
 public class TareaDTO {
@@ -20,7 +14,7 @@ public class TareaDTO {
 	private String bpmtaskid;
 	private String varKey;
 	private Object varValue;
-	private Map<String, Object> variables;
+	private List<variableDTO> variables;
 	private String person;
 	private String description;
 
@@ -28,7 +22,7 @@ public class TareaDTO {
 		super();
 	}
 
-	public TareaDTO(String bpmtaskid, String varKey, Object varValue, Map<String, Object> variables, String person,
+	public TareaDTO(String bpmtaskid, String varKey, Object varValue, List<variableDTO> variables, String person,
 			String description) {
 		super();
 		this.bpmtaskid = bpmtaskid;
@@ -63,11 +57,11 @@ public class TareaDTO {
 		this.varValue = varValue;
 	}
 
-	public Map<String, Object> getVariables() {
+	public List<variableDTO> getVariables() {
 		return variables;
 	}
 
-	public void setVariables(Map<String, Object> variables) {
+	public void setVariables(List<variableDTO> variables) {
 		this.variables = variables;
 	}
 
