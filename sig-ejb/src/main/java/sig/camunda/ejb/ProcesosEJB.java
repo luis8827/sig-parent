@@ -24,7 +24,7 @@ public class ProcesosEJB implements ProcesosInterface {
 		List<String> lista_permitida = new ArrayList<>();
 
 		for (String proceso : camunda.getProcessDefinitions()) {
-			if (auth.isAuthorizationReadProcessDefinition(usuario, proceso)) {
+			if (auth.isAuthorizationReadProcessInstance(usuario, proceso) || auth.isAuthorizationReadProcessDefinition(usuario, proceso)) {
 				lista_permitida.add(proceso);
 			}
 		}
