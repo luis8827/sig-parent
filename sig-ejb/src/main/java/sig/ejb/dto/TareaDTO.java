@@ -1,7 +1,6 @@
 package sig.ejb.dto;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 
